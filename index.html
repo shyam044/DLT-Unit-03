@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLT Unit-03 - Questions</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+      font-size: 1rem;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      page-break-after: always;
+    }
+    h2 {
+      color: #0077cc;
+      margin: 2rem 0 1rem;
+      font-size: 1.6rem;
+    }
+    h3 {
+      color: #444;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    p {
+      margin: 0.5rem 0;
+    }
+    ul {
+      margin: 0.3rem 0 1rem 1rem;
+      padding-left: 1rem;
+    }
+    li>ul {
+      margin-top: 0.3rem;
+      margin-bottom: 0.6rem;
+      padding-left: 0.7rem;
+    }
+    li>ul>li {
+      margin-bottom: 0.4rem;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1rem auto;
+      border-radius: 6px;
+    }
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.95rem;
+      }
+      header {
+        font-size: 1.3rem;
+        padding: 0.8rem 0.5rem;
+      }
+      .container {
+        padding: 0.9rem;
+        margin: 1.5rem auto;
+      }
+      h2 {
+        font-size: 1.3rem;
+        margin-top: 1.8rem;
+      }
+      h3 {
+        font-size: 1.1rem;
+        margin-top: 0.7rem;
+      }
+      ul {
+        margin-left: 0.5rem;
+        padding-left: 0.7rem;
+      }
+      li>ul {
+        margin-top: 0.2rem;
+        margin-bottom: 0.4rem;
+        padding-left: 0.5rem;
+      }
+      li>ul>li {
+        margin-bottom: 0.3rem;
+      }
+      ul li {
+        font-size: 0.95rem;
+        line-height: 1.3rem;
+      }
+    }
+    @media print {
+      .container {
+        page-break-after: always;
+      }
+    }
+    img {
+      display: block;
+      max-width: 55%;
+      height: auto;
+      max-height: 280px;
+      object-fit: contain;
+      margin: 1rem auto;
+      border-radius: 6px;
+    }
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    #lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    #lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    #lightbox.active img {
+      transform: scale(1);
+      cursor: zoom-out;
+    }
+    #image-tip {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 119, 204, 0.95);
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease;
+    }
+    #image-tip.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+     /* Table base styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #0077cc;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e6f0ff;
+    }
+
+    /* Make tables horizontally scrollable on small screens instead of restructuring into blocks.
+       This preserves semantics and improves readability. */
+    .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+
+    /* optional minimum width so complex tables remain readable on desktop and can scroll on mobile */
+    .table-responsive table {
+      min-width: 640px; /* adjust as needed */
+    }
+            pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 0 6px 6px 6px;
+            overflow-x: auto;
+            margin: -6px 0 0.6rem 1rem;
+            font-size: 0.95rem;
+            border: 1px solid #ddd;
+        }
+        .output {
+            margin: 0 0 0 1.2rem;
+            padding: 0.45rem 0.8rem;
+            font-size: 1rem;
+            background: #f8f8fa;
+            border-radius: 4px;
+            border-left: 3px solid #50aaff;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0.7rem; }
+            h2 { font-size: 1.13rem; margin-top: 1rem;}
+            .code-label, pre { margin-left: 0.5rem; font-size: 0.87rem; }
+            .output { margin-left: 0.6rem; font-size: 0.96rem; padding: 0.36rem 0.6rem;}
+        }
+        @media (max-width: 480px) {
+            ul, ul ul { margin-left: 0.46rem !important; padding-left: 0.5rem !important;}
+        }
+  </style>
+     <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ8GK8VNS9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WJ8GK8VNS9');
+</script>
+</head>
+<body>
+  <header>
+    DLT Unit-03
+  </header>
+  <div id="image-tip">💡 Click on any image for better visualizing!</div>
+  <div id="lightbox">
+    <img id="lightbox-img" src="" alt="Enlarged image">
+  </div>
+  <div class="container">
+    <h2>1) Neural Networks</h2>
+    <ul>
+      <li>A neural Network is a type of Machine Learning Model inspired by the human brain</li>
+      <li>Deep Learning uses a neural network for learning the model</li>
+      <li>There are so many types of neural networks. Some of them are:
+        <ul>
+          <li>a)ANN</li>
+          <li>b)CNN</li>
+          <li>c)RNN</li>
+        </ul>
+      </li>
+    </ul>
+<table border="1" cellpadding="8">
+  <tr>
+    <th>ANN</th>
+    <th>CNN</th>
+    <th>RNN</th>
+  </tr>
+
+  <tr>
+    <td>ANN stands for Artificial Neural Network</td>
+    <td>CNN stands for Convolutional Neural Network</td>
+    <td>RNN stands for Recurrent Neural Network</td>
+  </tr>
+
+  <tr>
+    <td>ANN is also called a Feed-Forward Neural Network(FFNN)</td>
+    <td>It uses a Convolutional layer to extract features from the data</td>
+    <td>It uses a recurrent layer to process the sequential data</td>
+  </tr>
+
+  <tr>
+    <td>Input Layers -> Hidden Layers -> Output Layers</td>
+    <td>It processes grid-like data</td>
+    <td>It processes Sequential data</td>
+  </tr>
+
+  <tr>
+    <td>Input data is Independent</td>
+    <td>Input data is independent</td>
+    <td>Input data is dependent</td>
+  </tr>
+
+  <tr>
+     <td>It handles fixed-length inputs</td>
+    <td>It handles fixed-length inputs</td>
+    <td>It handles Variable-length inputs</td>
+  </tr>
+
+  <tr>
+   <td>ANN is very simple</td>
+    <td>CNN is less complex</td>
+    <td>RNN is highly complex</td>
+  </tr>
+
+  <tr>
+    <td>Example:
+      <ul>
+        <li>Pattern Recognition</li>
+      </ul>
+    </td>
+    <td>Example:
+      <ul>
+        <li>Image Recognition</li>
+      </ul>
+    </td>
+    <td>Example:
+      <ul>
+        <li>Time-series prediction</li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+     <td><img src="WhatsApp Image 2025-11-29 at 17.02.20_69832604.jpg" alt="ANN"/></td>
+    <td><img src="WhatsApp Image 2025-11-29 at 20.07.42_99c04033.jpg" alt="CNN"/></td>
+    <td><img src="WhatsApp Image 2025-11-29 at 20.08.07_b6294301.jpg" alt="RNN"/></td>
+  </tr>
+
+</table>
+
+  </div>
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>2) Anatomy of Neural Network</h2>
+    <img src="Screenshot 2025-11-29 200453.png" alt="Anatomy of Neural Network"/>
+    <h3>Layer:</h3>
+    <ul>
+      <li>Layer is the Modular units that process the data</li>
+      <li>Layers can be stateless or stateful</li>
+      <li>Layer types:
+        <ul>
+          <li>Convolutional Layers</li>
+          <li>Recurrent Layers</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Model(Network):</h3>
+    <ul>
+      <li>It is a DAG of layers that maps inputs to outputs</li>
+      <li>They are built using:
+        <ul>
+          <li>Sequential API</li>
+          <li>Functional API</li>
+        </ul>
+      </li>
+      <li>Sequential API is used for simple models</li>
+      <li>Functional API is used for complex models</li>
+    </ul>
+    <h3>Input and Target:</h3>
+    <ul>
+      <li>They must be properly shaped before feeding into the Network</li>
+    </ul>
+    <h3>Loss Functions:</h3>
+    <ul>
+      <li>Loss function is the difference between the predicted value and the actual value</li>
+    </ul>
+    <h3>Optimizer:</h3>
+    <ul>
+      <li>Optimizer updates the weight based on the loss functions</li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>3) Deep Learning Stack</h2>
+    <ul>
+      <li>Deep Learning Stack consists of multiple layers of software and hardware</li>
+      <li>They work together to build, train and deploy the neural network model</li>
+    </ul>
+    <img src="WhatsApp Image 2025-11-29 at 20.44.55_c46ea627.jpg" alt="Deep Learning Stack"/>
+    <h3>a) Hardware Stack:</h3>
+    <ul>
+      <li>It contains Hardware Components like:
+        <ul>
+          <li>CPU(Central Processing Unit)</li>
+          <li>GPU(Graphical Processing Unit)</li>
+          <li>Memory, etc...</li>
+        </ul>
+      </li>
+      <li>Example:
+        <ul>
+          <li>NVIDIA</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>b) Software Stack:</h3>
+    <ul>
+      <li>Libraries:
+        <ul>
+          <li>Libraries are used to perform tensor operations and computations</li>
+          <li>Example:
+            <ul>
+              <li>TensorFlow</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Frameworks:
+        <ul>
+          <li>Frameworks are used to build the model</li>
+          <li>Example:
+            <ul>
+              <li>Keras</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Programming Language:
+        <ul>
+          <li>We use Python here</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>4) Architecture of Keras (or) Keras Workflow (or) high-level building blocks</h2>
+    <img src="WhatsApp Image 2025-11-29 at 22.15.40_1fa315e8.jpg" alt="Keras Architecture"/>
+    <h3>Prepare the Data:</h3>
+    <ul>
+      <li>Create Input Sensor and Target Sensor
+        <ul>
+          <li>Input Sensor: x_train</li>
+          <li>Target Sensor: y_train</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Layer:</h3>
+    <ul>
+      <li>Layer is the Modular units that process the data</li>
+      <li>Layers can be stateless or stateful</li>
+      <li>Layer types:
+        <ul>
+          <li>Convolutional Layers</li>
+          <li>Recurrent Layers</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Model(Network):</h3>
+    <ul>
+      <li>It is a DAG of layers that maps inputs to outputs</li>
+      <li>They are built using:
+        <ul>
+          <li>Sequential API</li>
+          <li>Functional API</li>
+        </ul>
+      </li>
+      <li>Sequential API is used for simple models</li>
+      <li>Functional API is used for complex models</li>
+    </ul>
+    <h3>Compile the Model:</h3>
+    <ul>
+      <li>model.compile(optimizer = 'Adam',
+        <ul>
+          <li>loss = 'value',</li>
+          <li>metrics = ['accuracy'])</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Train the Model:</h3>
+    <ul>
+      <li>model.fit(x_train,y_train,
+        <ul>
+          <li>epochs = 10,</li>
+          <li>batch_size = 512,</li>
+          <li>validation_data = (x_val,y_val))</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Evaluate the Model:</h3>
+    <ul>
+      <li>model.evaluate(x_test,y_test)</li>
+    </ul>
+    <h3>Predict the Model:</h3>
+    <ul>
+      <li>model.predict(new_inputs)</li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>5) Binary classification(classifying movie reviews)</h2>
+    <ul>
+      <li>Binary classification for movie reviews involves classifying each movie review as positive or negative.</li>
+    </ul>
+    <img src="WhatsApp Image 2025-11-10 at 17.04.49_b70d46bf.jpg" alt="Binary Classification"/>
+    <h3>Input:</h3>
+    <ul>
+      <li>Use the IMDb dataset.</li>
+      <li>It contains 25,000 training samples and 25,000 testing samples.</li>
+    </ul>
+    <h3>Pre-Processing:</h3>
+    <ul>
+      <li>Transform all text into lowercase and remove all special characters.</li>
+      <li>Convert the sentences into a list of tokens.</li>
+    </ul>
+    <h3>Feature Extraction:</h3>
+    <ul>
+      <li>Use Keras's Embedding Layers to convert tokens into vectors.</li>
+      <li>Example:
+        <ul>
+          <li>a = 100</li>
+          <li>b = 10</li>
+          <li>Embedding(a, b)</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Classification:</h3>
+    <ul>
+      <li>After the Embedding Layer, add a Flatten Layer to reduce the dimensions.</li>
+      <li>Add one or more Dense Layers.</li>
+      <li>Add a final Dense Layer for binary output.</li>
+      <li>The model classifies each movie review as positive or negative.</li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>6) Training Loss vs Validation Loss</h2>
+    <h3>program:</h3>
+    <pre>
+a = history.history
+b = a['loss']
+c = a['val_loss']
+epochs = range(1, len(b) + 1)
+
+plt.plot(epochs, b, 'bo', label='Training loss')
+plt.plot(epochs, c, 'b', label='Validation loss')
+
+plt.title('Graph')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+</pre>
+
+    <h3>Output:</h3>
+    <img src="IMG-20251130-WA0001.jpg" alt="Training Loss vs Validation Loss"/>
+    <ul>
+      <li>The difference between the training loss and validation loss indicates Overfitting</li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>7) NVIDIA GPUs vs cloud-based GPUs</h2>
+<table border="1" cellpadding="8">
+  <tr>
+    <th>NVIDIA GPUs</th>
+    <th>cloud-based GPUs</th>
+  </tr>
+
+  <tr>
+    <td>NVIDIA GPUs are the best GPUs for deep learning</td>
+    <td>When you don't have an NVIDIA GPU, Cloud-based GPUs are best for deep learning</td>
+  </tr>
+
+  <tr>
+    <td>NVIDIA GPUs support frameworks and libraries such as TensorFlow and Keras.</td>
+    <td>Cloud-based also supports frameworks and libraries such as TensorFlow and Keras.</td>
+  </tr>
+
+  <tr>
+    <td>NVIDIA GPUs support CUDA</td>
+    <td>Cloud-based GPUs also support CUDA</td>
+  </tr>
+
+  <tr>
+    <td>It needs an Operating System</td>
+    <td>It needs an Internet connection</td>
+  </tr>
+
+  <tr>
+    <td>NVIDIA GPUs are better when compared to other GPUs</td>
+    <td>Cloud-based GPUs are better than NVIDIA GPUs</td>
+  </tr>
+
+  <tr>
+    <td>High performance and High Throughput when compared to other GPUs</td>
+    <td>High performance and High Throughput when compared to NVIDIA GPUs</td>
+  </tr>
+
+  <tr>
+    <td>High Cost</td>
+    <td>cost effectiveness</td>
+  </tr>
+
+  <tr>
+    <td><img src="IMG-20251130-WA0003.jpg" alt="NVIDIA GPUs"/></td>
+    <td><img src="IMG-20251130-WA0004.jpg" alt="Cloud-based GPUs"/></td>
+  </tr>
+</table>
+
+  </div>
+
+
+
+  <header>
+    DLT Unit-03
+  </header>
+  <div class="container">
+    <h2>8)Explain the steps in setting up the deep-learning workstation.</h2>
+      <img src="IMG-20251130-WA0002.jpg" alt="setting up DL workstation"/>
+  </div>
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    document.querySelectorAll("img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      });
+    });
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+    });
+  </script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const tip = document.getElementById("image-tip");
+      tip.classList.add("show");
+      setTimeout(() => {
+        tip.classList.remove("show");
+      },5000);
+    });
+  </script>
+</body>
+</html>
